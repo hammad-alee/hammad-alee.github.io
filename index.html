@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+       SEO & SOCIAL PREVIEW
+       Edit the title / description below if your headline changes.
+       ============================================================ -->
+  <title>Hammad Ali | Senior Flutter Developer</title>
+  <meta name="description" content="Hammad Ali — Senior Flutter Developer with 6+ years building cross-platform apps for Android, iOS, macOS and Windows. Fintech, POS, healthcare and Web3 apps shipped to the Play Store and App Store." />
+  <meta name="author" content="Hammad Ali" />
+  <meta name="keywords" content="Flutter Developer, Senior Flutter Developer, Dart, Mobile App Developer, Android, iOS, BLoC, Riverpod, Firebase, Pakistan, Remote" />
+  <link rel="canonical" href="https://hammad-alee.github.io/" />
+  <meta name="theme-color" content="#02569B" />
+
+  <!-- Open Graph (LinkedIn, Facebook, WhatsApp previews) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hammad-alee.github.io/" />
+  <meta property="og:title" content="Hammad Ali | Senior Flutter Developer" />
+  <meta property="og:description" content="6+ years building production Flutter apps for Android, iOS, macOS and Windows. See my projects, experience and contact details." />
+  <!-- To get an image in link previews: upload a 1200x630 PNG named og-image.png
+       to your repository, then remove the comment markers around the next two lines. -->
+  <!-- <meta property="og:image" content="https://hammad-alee.github.io/og-image.png" /> -->
+  <!-- <meta name="twitter:image" content="https://hammad-alee.github.io/og-image.png" /> -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hammad Ali | Senior Flutter Developer" />
+  <meta name="twitter:description" content="6+ years building production Flutter apps for Android, iOS, macOS and Windows." />
+
+  <!-- Favicon: an inline SVG "HA" monogram, so no extra file is needed -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2302569B'/%3E%3Cstop offset='1' stop-color='%2313B9FD'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='26' font-weight='700' text-anchor='middle' fill='white'%3EHA%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fonts & icons (lightweight CDNs) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <!-- Apply the saved theme before the page paints (prevents a flash) -->
+  <script>
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) { /* storage unavailable: keep dark default */ }
+  </script>
+
+  <style>
+    /* ============================================================
+       THEME COLORS
+       Dark is the default. Light overrides are below it.
+       ============================================================ */
+    :root {
+      --flutter-blue: #02569B;
+      --flutter-sky: #13B9FD;
+      --accent: #13B9FD;           /* links, highlights */
+      --accent-strong: #4FCBFF;    /* hover */
+      --on-accent: #04121F;        /* text on accent buttons */
+
+      --bg: #0A1220;
+      --bg-alt: #0E1828;
+      --surface: #132034;
+      --surface-2: #1A2A42;
+      --border: #24364F;
+      --text: #E7EEF7;
+      --text-muted: #9FB0C6;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      --nav-bg: rgba(10, 18, 32, 0.82);
+
+      --radius: 14px;
+      --max-w: 1120px;
+    }
+    :root[data-theme="light"] {
+      --accent: #02569B;
+      --accent-strong: #01467E;
+      --on-accent: #FFFFFF;
+
+      --bg: #F7FAFD;
+      --bg-alt: #EEF4FA;
+      --surface: #FFFFFF;
+      --surface-2: #F1F6FB;
+      --border: #D6E2EE;
+      --text: #0F1B2B;
+      --text-muted: #4A5B70;
+      --shadow: 0 10px 30px rgba(2, 86, 155, 0.10);
+      --nav-bg: rgba(247, 250, 253, 0.88);
+    }
+
+    /* ============================================================
+       BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      transition: background-color .3s ease, color .3s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-strong); }
+    h1, h2, h3 { line-height: 1.2; margin: 0; }
+    p { margin: 0 0 1rem; }
+    ul { margin: 0; padding: 0; }
+    :focus-visible { outline: 2px solid var(--flutter-sky); outline-offset: 3px; border-radius: 6px; }
+
+    .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }
+    section { padding: 96px 0; }
+    section:nth-of-type(even) { background: var(--bg-alt); }
+
+    .skip-link {
+      position: absolute; left: -999px; top: 8px; z-index: 200;
+      background: var(--accent); color: var(--on-accent); padding: 8px 14px; border-radius: 8px;
+    }
+    .skip-link:focus { left: 8px; }
+
+    /* Section headings */
+    .section-head { margin-bottom: 48px; }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: .85rem;
+      color: var(--accent); letter-spacing: .04em; margin-bottom: 8px; display: block;
+    }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 800; }
+    .section-sub { color: var(--text-muted); margin-top: 10px; max-width: 640px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 22px; border-radius: 10px; font-weight: 600; font-size: .98rem;
+      border: 1.5px solid transparent; cursor: pointer;
+      transition: transform .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg, var(--flutter-blue), var(--flutter-sky)); color: #fff; }
+    .btn-primary:hover { color: #fff; }
+    .btn-outline { border-color: var(--border); color: var(--text); background: var(--surface); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ============================================================
+       NAVBAR
+       ============================================================ */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--nav-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent; transition: border-color .3s ease;
+    }
+    .navbar.scrolled { border-bottom-color: var(--border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--text); font-size: 1.1rem; }
+    .brand:hover { color: var(--text); }
+    .brand-mark {
+      width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--flutter-blue), var(--flutter-sky)); color: #fff; font-size: .85rem;
+    }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted); font-weight: 500; font-size: .95rem; padding: 8px 12px; border-radius: 8px;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center;
+      background: var(--surface); border: 1px solid var(--border); color: var(--text); cursor: pointer; font-size: 1rem;
+    }
+    .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .menu-toggle { display: none; }
+    /* Show the correct theme icon */
+    .theme-toggle .fa-sun { display: none; }
+    :root[data-theme="light"] .theme-toggle .fa-sun { display: inline-block; }
+    :root[data-theme="light"] .theme-toggle .fa-moon { display: none; }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero { padding: 110px 0 100px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: -40% -10% auto auto; width: 720px; height: 720px;
+      background: radial-gradient(circle, rgba(19,185,253,.18), transparent 65%); pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center; position: relative; }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border); font-size: .88rem; color: var(--text-muted); margin-bottom: 22px;
+    }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #2ECC71; box-shadow: 0 0 0 4px rgba(46,204,113,.18); }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; letter-spacing: -0.02em; }
+    .hero h1 .grad {
+      background: linear-gradient(135deg, var(--flutter-sky), var(--flutter-blue));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    :root[data-theme="dark"] .hero h1 .grad { background: linear-gradient(135deg, #7FDBFF, var(--flutter-sky)); -webkit-background-clip: text; background-clip: text; }
+    .hero-role { font-size: clamp(1.15rem, 2.4vw, 1.45rem); font-weight: 600; color: var(--text); margin: 12px 0 18px; }
+    .hero-tagline { font-size: 1.08rem; color: var(--text-muted); max-width: 560px; margin-bottom: 30px; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
+    .hero-social { display: flex; gap: 10px; }
+    .hero-social a {
+      width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center;
+      background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); font-size: 1.1rem;
+    }
+    .hero-social a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* Hero card with quick stats */
+    .hero-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 28px; box-shadow: var(--shadow);
+    }
+    .avatar {
+      width: 96px; height: 96px; border-radius: 22px; margin-bottom: 18px; object-fit: cover;
+      display: grid; place-items: center; font-size: 2rem; font-weight: 800; color: #fff;
+      background: linear-gradient(135deg, var(--flutter-blue), var(--flutter-sky));
+    }
+    .hero-card .code {
+      font-family: 'JetBrains Mono', monospace; font-size: .86rem; color: var(--text-muted);
+      background: var(--surface-2); border-radius: 10px; padding: 14px 16px; margin-bottom: 20px; overflow-x: auto; white-space: pre;
+    }
+    .code .k { color: #C792EA; } .code .s { color: #8BD49C; } .code .t { color: var(--flutter-sky); }
+    :root[data-theme="light"] .code .k { color: #7B30C9; }
+    :root[data-theme="light"] .code .s { color: #1E7D3A; }
+    :root[data-theme="light"] .code .t { color: var(--flutter-blue); }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .stat { text-align: center; padding: 12px 6px; border-radius: 12px; background: var(--surface-2); }
+    .stat strong { display: block; font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+    .stat span { font-size: .8rem; color: var(--text-muted); }
+
+    /* ============================================================
+       ABOUT
+       ============================================================ */
+    .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px; align-items: start; }
+    .about-text p { color: var(--text-muted); font-size: 1.05rem; }
+    .about-text p strong { color: var(--text); }
+    .facts { list-style: none; display: grid; gap: 12px; }
+    .facts li {
+      display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border);
+    }
+    .facts i { color: var(--accent); width: 20px; text-align: center; }
+    .facts small { display: block; color: var(--text-muted); font-size: .8rem; }
+
+    /* ============================================================
+       SKILLS
+       ============================================================ */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .skill-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .skill-card h3 { font-size: 1.05rem; display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .skill-card h3 i {
+      width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; font-size: .95rem;
+      background: rgba(19,185,253,.12); color: var(--accent);
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+    .badges li {
+      font-size: .85rem; padding: 5px 12px; border-radius: 999px;
+      background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    }
+
+    /* ============================================================
+       EXPERIENCE (timeline)
+       ============================================================ */
+    .timeline { position: relative; list-style: none; padding-left: 34px; }
+    .timeline::before {
+      content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px;
+      background: linear-gradient(var(--flutter-sky), var(--flutter-blue), transparent);
+    }
+    .tl-item { position: relative; margin-bottom: 28px; }
+    .tl-item::before {
+      content: ""; position: absolute; left: -31px; top: 26px; width: 14px; height: 14px; border-radius: 50%;
+      background: var(--bg); border: 3px solid var(--flutter-sky);
+    }
+    .tl-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 26px; }
+    .tl-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; margin-bottom: 4px; }
+    .tl-role { font-size: 1.2rem; font-weight: 700; }
+    .tl-date { font-family: 'JetBrains Mono', monospace; font-size: .85rem; color: var(--accent); white-space: nowrap; }
+    .tl-company { color: var(--text-muted); font-weight: 500; margin-bottom: 14px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+    .tl-company a { font-weight: 600; }
+    .tl-list { padding-left: 20px; color: var(--text-muted); }
+    .tl-list li { margin-bottom: 6px; }
+    .tl-list strong { color: var(--text); }
+    .tl-apps { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+    .tl-apps li { font-size: .8rem; padding: 4px 10px; border-radius: 6px; background: var(--surface-2); color: var(--text-muted); border: 1px solid var(--border); }
+
+    /* ============================================================
+       PROJECTS
+       ============================================================ */
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .filter-btn {
+      padding: 8px 16px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface);
+      color: var(--text-muted); font: inherit; font-size: .9rem; font-weight: 500; cursor: pointer;
+    }
+    .filter-btn:hover { color: var(--text); border-color: var(--accent); }
+    .filter-btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
+    .project-card {
+      display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+    .project-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--shadow); }
+    .project-card[hidden] { display: none; }
+    /* "Screenshot" area: shows an image if you add one, otherwise a branded gradient with an icon */
+    .project-thumb {
+      aspect-ratio: 16 / 9; display: grid; place-items: center; position: relative;
+      background: linear-gradient(135deg, var(--c1, #02569B), var(--c2, #13B9FD));
+    }
+    .project-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .project-thumb > i { font-size: 2.8rem; color: rgba(255,255,255,.92); }
+    .project-thumb .platforms {
+      position: absolute; left: 12px; bottom: 12px; display: flex; gap: 6px;
+    }
+    .project-thumb .platforms span {
+      font-size: .72rem; font-weight: 600; padding: 3px 9px; border-radius: 6px; background: rgba(0,0,0,.4); color: #fff;
+    }
+    .project-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+    .project-company { font-size: .78rem; font-family: 'JetBrains Mono', monospace; color: var(--accent); margin-bottom: 6px; }
+    .project-body h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .project-body p { color: var(--text-muted); font-size: .95rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 4px 0 18px; }
+    .tags li { font-size: .76rem; padding: 3px 9px; border-radius: 6px; background: rgba(19,185,253,.1); color: var(--accent); font-weight: 500; }
+    .project-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-links a {
+      display: inline-flex; align-items: center; gap: 7px; font-size: .85rem; font-weight: 600;
+      padding: 7px 12px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    }
+    .project-links a:hover { border-color: var(--accent); color: var(--accent); }
+    .project-links .private { font-size: .82rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 7px; }
+
+    /* ============================================================
+       EDUCATION
+       ============================================================ */
+    .edu-card {
+      display: grid; grid-template-columns: auto 1fr; gap: 22px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius); padding: 28px;
+    }
+    .edu-icon {
+      width: 60px; height: 60px; border-radius: 14px; display: grid; place-items: center; font-size: 1.5rem; color: #fff;
+      background: linear-gradient(135deg, var(--flutter-blue), var(--flutter-sky));
+    }
+    .edu-card h3 { font-size: 1.25rem; }
+    .edu-meta { color: var(--text-muted); margin: 4px 0 14px; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+    .edu-card .tl-list { padding-left: 18px; }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    .contact-wrap { text-align: center; max-width: 760px; margin: 0 auto; }
+    .contact-wrap .section-sub { margin: 10px auto 36px; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; text-align: left; }
+    .contact-card {
+      display: flex; align-items: center; gap: 14px; padding: 18px; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .contact-card:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--text); }
+    .contact-card i {
+      width: 44px; height: 44px; flex-shrink: 0; border-radius: 11px; display: grid; place-items: center; font-size: 1.2rem;
+      background: rgba(19,185,253,.12); color: var(--accent);
+    }
+    .contact-card small { display: block; color: var(--text-muted); font-size: .8rem; }
+    .contact-card span { font-weight: 600; font-size: .95rem; word-break: break-word; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--text-muted); font-size: .9rem; }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+    .footer-inner a { color: var(--text-muted); margin-left: 14px; }
+    .footer-inner a:hover { color: var(--accent); }
+
+    .to-top {
+      position: fixed; right: 20px; bottom: 20px; z-index: 90; opacity: 0; pointer-events: none;
+      transition: opacity .3s ease; box-shadow: var(--shadow);
+    }
+    .to-top.show { opacity: 1; pointer-events: auto; }
+
+    /* ============================================================
+       FADE-IN ANIMATION (on scroll)
+       ============================================================ */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .no-js .reveal { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 900px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .hero { padding: 72px 0 80px; }
+      .hero-card { max-width: 520px; }
+      section { padding: 76px 0; }
+
+      /* Mobile menu */
+      .menu-toggle { display: grid; }
+      .nav-links {
+        position: fixed; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 2px;
+        padding: 12px 16px 20px; background: var(--bg); border-bottom: 1px solid var(--border);
+        transform: translateY(-120%); visibility: hidden; transition: transform .3s ease, visibility .3s;
+      }
+      .nav-links.open { transform: none; visibility: visible; }
+      .nav-links a { display: block; padding: 12px 14px; font-size: 1rem; }
+    }
+    @media (max-width: 560px) {
+      .container { padding: 0 16px; }
+      .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+      .hero-ctas .btn { flex: 1 1 100%; justify-content: center; }
+      .tl-card { padding: 20px; }
+      .timeline { padding-left: 26px; }
+      .timeline::before { left: 5px; }
+      .tl-item::before { left: -27px; }
+      .edu-card { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-inner a { margin: 0 7px; }
+    }
+  </style>
+</head>
+
+<body class="no-js">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <header class="navbar" id="navbar">
+    <nav class="container nav-inner" aria-label="Main navigation">
+      <a href="#home" class="brand" aria-label="Hammad Ali, back to top">
+        <span class="brand-mark" aria-hidden="true">HA</span>
+        Hammad Ali
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch between light and dark theme">
+          <i class="fa-solid fa-moon" aria-hidden="true"></i>
+          <i class="fa-solid fa-sun" aria-hidden="true"></i>
+        </button>
+        <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <!-- Edit or delete this availability line as needed -->
+          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span> Open to remote, hybrid &amp; onsite roles</span>
+          <h1>Hi, I'm <span class="grad">Hammad Ali</span></h1>
+          <p class="hero-role">Senior Flutter Developer</p>
+          <p class="hero-tagline">
+            I build fast, reliable cross-platform apps for Android, iOS, macOS and Windows — from fintech and
+            Web3 to POS and healthcare — and ship them to the Play Store and App Store.
+          </p>
+          <div class="hero-ctas">
+            <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> View Projects</a>
+            <!-- Resume: upload your PDF to the repository with this exact file name -->
+            <a href="Hammad_Ali_Flutter-Developer-Resume.pdf" class="btn btn-outline" download><i class="fa-solid fa-download" aria-hidden="true"></i> Download Resume</a>
+            <a href="#contact" class="btn btn-outline"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Contact Me</a>
+          </div>
+          <div class="hero-social">
+            <a href="https://www.linkedin.com/in/hammad-alee" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://github.com/hammad-alee" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+            <a href="mailto:hammadd4726@gmail.com" aria-label="Send email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+            <a href="https://wa.me/923004636921" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal" aria-label="Quick stats">
+          <!-- PROFILE PHOTO: to use a photo, replace the next line with:
+               <img class="avatar" src="profile.jpg" alt="Portrait of Hammad Ali" width="96" height="96" />
+               and upload profile.jpg to your repository. -->
+          <div class="avatar" role="img" aria-label="Hammad Ali initials">HA</div>
+          <div class="code" aria-hidden="true"><span class="k">final</span> dev = <span class="t">Developer</span>(
+  name: <span class="s">'Hammad Ali'</span>,
+  stack: [<span class="s">'Flutter'</span>, <span class="s">'Dart'</span>],
+  based: <span class="s">'Islamabad, PK'</span>,
+);</div>
+          <div class="stats">
+            <div class="stat"><strong>6+</strong><span>Years building apps</span></div>
+            <div class="stat"><strong>30+</strong><span>Apps delivered</span></div>
+            <div class="stat"><strong>4</strong><span>Platforms shipped</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT
+         ============================================================ -->
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">// about me</span>
+          <h2 class="section-title">Building apps people rely on</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              I'm a <strong>Senior Flutter Developer</strong> with 6+ years of mobile experience, currently
+              <strong>Lead Flutter Developer at GoOrderz</strong>, a Hungary-based POS and food-delivery company,
+              where I run the Flutter app lifecycle across Android, iOS, macOS and Windows.
+            </p>
+            <p>
+              I've shipped apps for fintech, Web3, healthcare, e-commerce and booking — working with teams and
+              clients in Hungary, Singapore and Australia. I care about <strong>clean architecture</strong>
+              (Clean Architecture, MVVM, dependency injection), <strong>tested code</strong> (I led a push that
+              raised coverage to 80% and cut bug-related incidents by 30%), and UIs that feel smooth on every device.
+            </p>
+            <p>
+              Beyond Flutter, I've built native Android (Java/Kotlin) and Xamarin apps, written REST APIs with
+              PHP and MySQL, and integrated payments, KYC, MQTT and platform-specific code through Method Channels
+              and Platform Views.
+            </p>
+          </div>
+          <ul class="facts reveal">
+            <li><i class="fa-solid fa-briefcase" aria-hidden="true"></i><div><small>Current role</small>Lead Flutter Developer, GoOrderz</div></li>
+            <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><div><small>Location</small>Islamabad, Pakistan</div></li>
+            <li><i class="fa-solid fa-globe" aria-hidden="true"></i><div><small>Work style</small>Remote · Hybrid · Onsite</div></li>
+            <li><i class="fa-solid fa-layer-group" aria-hidden="true"></i><div><small>Domains</small>Fintech · POS · Healthcare · Web3</div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS  (add/remove <li> items to change badges)
+         ============================================================ -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">// skills</span>
+          <h2 class="section-title">Tools I work with</h2>
+          <p class="section-sub">A practical stack for building, testing and shipping production apps.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <h3><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i> Mobile &amp; Cross-Platform</h3>
+            <ul class="badges">
+              <li>Flutter</li><li>Native Android (Java/XML)</li><li>Xamarin</li><li>Method Channel</li><li>Platform View</li><li>Animations</li><li>Play Store &amp; App Store releases</li>
+            </ul>
+          </div>
+          <div class="skill-card reveal">
+            <h3><i class="fa-solid fa-code" aria-hidden="true"></i> Languages</h3>
+            <ul class="badges">
+              <li>Dart</li><li>Java</li><li>Kotlin</li><li>Swift</li><li>C#</li><li>PHP</li><li>SQL</li>
+            </ul>
+          </div>
+          <div class="skill-card reveal">
+            <h3><i class="fa-solid fa-diagram-project" aria-hidden="true"></i> State Management &amp; Architecture</h3>
+            <ul class="badges">
+              <li>BLoC</li><li>Riverpod</li><li>Provider</li><li>GetX</li><li>Clean Architecture</li><li>MVVM</li><li>MVC</li><li>Dependency Injection</li>
+            </ul>
+          </div>
+          <div class="skill-card reveal">
+            <h3><i class="fa-solid fa-server" aria-hidden="true"></i> Backend, Data &amp; APIs</h3>
+            <ul class="badges">
+              <li>Firebase</li><li>FCM</li><li>REST APIs (Dio, http)</li><li>MySQL</li><li>SQLite</li><li>MQTT</li><li>Google APIs</li><li>PayPal</li><li>KYC SDKs</li>
+            </ul>
+          </div>
+          <div class="skill-card reveal">
+            <h3><i class="fa-solid fa-vial-circle-check" aria-hidden="true"></i> Testing &amp; CI/CD</h3>
+            <ul class="badges">
+              <li>Unit Testing</li><li>Widget Testing</li><li>Integration Testing</li><li>TDD</li><li>GitHub Actions</li><li>GitLab CI</li><li>Bitbucket Pipelines</li><li>Xcode Cloud</li>
+            </ul>
+          </div>
+          <div class="skill-card reveal">
+            <h3><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Tools &amp; Workflow</h3>
+            <ul class="badges">
+              <li>Git</li><li>GitHub</li><li>GitLab</li><li>Bitbucket</li><li>Jira</li><li>Android Studio</li><li>Xcode</li><li>VS Code</li><li>Agile / Scrum</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EXPERIENCE (newest first)
+         ============================================================ -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">// experience</span>
+          <h2 class="section-title">Where I've worked</h2>
+        </div>
+
+        <ol class="timeline">
+          <!-- Job 1 -->
+          <li class="tl-item reveal">
+            <article class="tl-card">
+              <div class="tl-top">
+                <h3 class="tl-role">Lead Flutter Developer</h3>
+                <span class="tl-date">Oct 2024 – Present</span>
+              </div>
+              <p class="tl-company"><a href="https://www.goorderz.hu" target="_blank" rel="noopener">GoOrderz kft.</a><span>Hungary · Full-time</span></p>
+              <ul class="tl-list">
+                <li>Lead the Flutter development lifecycle for POS and food-delivery apps across <strong>Android, iOS, macOS and Windows</strong>.</li>
+                <li>Oversee POS integrations and AI-driven features inside the mobile apps.</li>
+                <li>Improve stability and performance through debugging, profiling and continuous testing.</li>
+                <li>Work with back-end and product teams to keep APIs and UI in sync as features scale.</li>
+              </ul>
+              <ul class="tl-apps" aria-label="Apps delivered">
+                <li>Prior Cash POS</li><li>GoPOS</li><li>TZ-Assembly Warehouse</li><li>TZ-Assembly Worker</li><li>TZ-Assembly QC</li><li>Legrand (MQTT)</li><li>Visit Szentes</li>
+              </ul>
+            </article>
+          </li>
+
+          <!-- Job 2 -->
+          <li class="tl-item reveal">
+            <article class="tl-card">
+              <div class="tl-top">
+                <h3 class="tl-role">Senior Flutter Developer</h3>
+                <span class="tl-date">Jun 2023 – Oct 2024</span>
+              </div>
+              <p class="tl-company"><a href="https://www.genesislab.com" target="_blank" rel="noopener">Genesis IT Lab (ex RNS Solutions)</a><span>Singapore · Full-time</span></p>
+              <ul class="tl-list">
+                <li>Coordinated developers, business analysts and architects, <strong>cutting project turnaround by 10%</strong>.</li>
+                <li>Led unit and widget testing, <strong>raising code coverage to 80%</strong> and <strong>reducing bug incidents by 30%</strong>.</li>
+                <li>Architected Android and iOS UIs that <strong>lifted user engagement by 15%</strong>.</li>
+                <li>Gathered requirements directly with clients, <strong>improving client satisfaction by 20%</strong>; automated builds for on-time store releases.</li>
+              </ul>
+              <ul class="tl-apps" aria-label="Apps delivered">
+                <li>MyB</li><li>Cashero</li><li>SuperBooking Consumer</li><li>SuperBooking Business</li><li>Jomor</li>
+              </ul>
+            </article>
+          </li>
+
+          <!-- Job 3 -->
+          <li class="tl-item reveal">
+            <article class="tl-card">
+              <div class="tl-top">
+                <h3 class="tl-role">Mobile App Developer</h3>
+                <span class="tl-date">Sep 2020 – May 2023</span>
+              </div>
+              <p class="tl-company"><a href="https://www.itvirtualhouse.com" target="_blank" rel="noopener">IT Virtual House</a><span>Australia · Full-time</span></p>
+              <ul class="tl-list">
+                <li>Built maintainable Flutter and Xamarin apps, <strong>reducing maintenance costs by 15%</strong>.</li>
+                <li>Designed responsive Material UIs that <strong>increased user retention by 20%</strong>.</li>
+                <li>Integrated PayPal, Google APIs and a Medical E-Claims API; wrote REST APIs in PHP and MySQL.</li>
+                <li>Renewed several live healthcare apps in Flutter, published on both stores.</li>
+              </ul>
+              <ul class="tl-apps" aria-label="Apps delivered">
+                <li>13Cure</li><li>Prime Medic</li><li>Arts Market Gallery</li><li>EKSFC</li><li>AichiCars</li>
+              </ul>
+            </article>
+          </li>
+
+          <!-- Job 4 -->
+          <li class="tl-item reveal">
+            <article class="tl-card">
+              <div class="tl-top">
+                <h3 class="tl-role">Android App Developer (Internship)</h3>
+                <span class="tl-date">Sep 2019 – Aug 2020</span>
+              </div>
+              <p class="tl-company"><span style="color:var(--text);font-weight:600">Ritchie Techs</span><span>Pakistan</span></p>
+              <ul class="tl-list">
+                <li>Built native Android apps in Java, XML and Android Studio as part of a team.</li>
+                <li>Shipped prototypes including real-time university bus tracking, news, translation and e-pharmacy apps.</li>
+              </ul>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROJECTS
+         To add a screenshot: inside .project-thumb, replace the <i> icon with
+           <img src="screenshots/app.png" alt="Screenshot of App Name home screen" loading="lazy" />
+         data-category controls the filter buttons: fintech, pos, health, other
+         ============================================================ -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">// projects</span>
+          <h2 class="section-title">Selected work</h2>
+          <p class="section-sub">Production apps I've built or led. Most are client-owned, so links go to the live store listings where they're public.</p>
+        </div>
+
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+          <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" type="button" data-filter="fintech" aria-pressed="false">Fintech &amp; Web3</button>
+          <button class="filter-btn" type="button" data-filter="pos" aria-pressed="false">POS &amp; Business</button>
+          <button class="filter-btn" type="button" data-filter="health" aria-pressed="false">Healthcare</button>
+          <button class="filter-btn" type="button" data-filter="other" aria-pressed="false">Other</button>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- MyB -->
+          <article class="project-card reveal" data-category="fintech">
+            <div class="project-thumb" style="--c1:#3B1E8C;--c2:#13B9FD">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">Genesis IT Lab</span>
+              <h3>MyB</h3>
+              <p>A privacy-first Web 3.0 rewards app. Users earn rewards exchangeable for mobile coupons, collect badges, and earn bonuses through a spending-habit quiz.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Blockchain</li><li>REST APIs</li></ul>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=im.myb.android" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
+                <a href="https://apps.apple.com/kr/app/id6476365625" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Prior Cash POS -->
+          <article class="project-card reveal" data-category="pos">
+            <div class="project-thumb" style="--c1:#02569B;--c2:#00A3A3">
+              <i class="fa-solid fa-cash-register" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span><span>macOS</span><span>Windows</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">GoOrderz</span>
+              <h3>Prior Cash POS</h3>
+              <p>A point-of-sale system built from a single Flutter codebase that runs on phones, tablets and desktop tills.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Flutter Desktop</li><li>POS Integration</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- 13Cure -->
+          <article class="project-card reveal" data-category="health">
+            <div class="project-thumb" style="--c1:#0B6E4F;--c2:#13B9FD">
+              <i class="fa-solid fa-house-medical" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">IT Virtual House</span>
+              <h3>13Cure – Doctor Home Visit</h3>
+              <p>Full Flutter rebuild of a live app that lets patients book a doctor to visit their home.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Healthcare</li><li>REST APIs</li></ul>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=com.curehome.doctorservice" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
+                <a href="https://apps.apple.com/us/app/cure-home-doctor-service/id1110123056" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Prime Medic Consult -->
+          <article class="project-card reveal" data-category="health">
+            <div class="project-thumb" style="--c1:#02569B;--c2:#5FD3A1">
+              <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">IT Virtual House</span>
+              <h3>Prime Medic – Consult a Doctor</h3>
+              <p>Flutter renewal of a live online-clinic app that lets patients consult a doctor remotely.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Telehealth</li><li>REST APIs</li></ul>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=au.com.primemedic" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
+                <a href="https://apps.apple.com/us/app/prime-medic-online-clinic/id1503906417" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Cashero -->
+          <article class="project-card reveal" data-category="fintech">
+            <div class="project-thumb" style="--c1:#0E7C66;--c2:#13B9FD">
+              <i class="fa-solid fa-money-bill-transfer" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">Genesis IT Lab</span>
+              <h3>Cashero</h3>
+              <p>A fintech app for sending and receiving money worldwide.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Fintech</li><li>REST APIs</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- Arts Market Gallery -->
+          <article class="project-card reveal" data-category="other">
+            <div class="project-thumb" style="--c1:#8C2F6B;--c2:#F2994A">
+              <i class="fa-solid fa-palette" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">IT Virtual House</span>
+              <h3>Arts Market Gallery</h3>
+              <p>A marketplace app for browsing and buying artwork, built in Flutter for both stores.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>E-commerce</li><li>REST APIs</li></ul>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=com.prime.artgallery" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
+                <a href="https://apps.apple.com/in/app/arts-market-gallery/id1612064138" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- SuperBooking -->
+          <article class="project-card reveal" data-category="pos">
+            <div class="project-thumb" style="--c1:#1E3A8A;--c2:#7C5CFF">
+              <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">Genesis IT Lab</span>
+              <h3>SuperBooking (Consumer &amp; Business)</h3>
+              <p>Two connected apps: one for customers to book services, one for businesses to manage their services and bookings.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Booking</li><li>REST APIs</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- TZ-Assembly -->
+          <article class="project-card reveal" data-category="pos">
+            <div class="project-thumb" style="--c1:#374151;--c2:#02569B">
+              <i class="fa-solid fa-warehouse" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">GoOrderz</span>
+              <h3>TZ-Assembly Suite</h3>
+              <p>Three operations apps — Warehouse, Worker and Quality Control — that cover an assembly workflow end to end.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>REST APIs</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Internal apps — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- Legrand -->
+          <article class="project-card reveal" data-category="other">
+            <div class="project-thumb" style="--c1:#7A1F1F;--c2:#E85D3A">
+              <i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">GoOrderz</span>
+              <h3>Legrand App</h3>
+              <p>An Android app that communicates with devices in real time over MQTT.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>MQTT</li><li>IoT</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- Prime Medic Booking (Xamarin) -->
+          <article class="project-card reveal" data-category="health">
+            <div class="project-thumb" style="--c1:#4B2991;--c2:#02569B">
+              <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">IT Virtual House</span>
+              <h3>Prime Medic – Find &amp; Book a Doctor</h3>
+              <p>A patient appointment booking app built natively with Xamarin.Android and Xamarin.iOS.</p>
+              <ul class="tags"><li>Xamarin</li><li>C#</li><li>REST APIs</li></ul>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=pk.com.primemedic" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
+                <a href="https://apps.apple.com/pk/app/prime-medic-find-book-doc/id1546715882" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Jomor -->
+          <article class="project-card reveal" data-category="fintech">
+            <div class="project-thumb" style="--c1:#B45309;--c2:#F59E0B">
+              <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">Genesis IT Lab</span>
+              <h3>Jomor</h3>
+              <p>A ticket-buying app that supports both crypto and fiat wallets.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Crypto Wallets</li><li>Payments</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- Child Monitoring (FYP) -->
+          <article class="project-card reveal" data-category="other">
+            <div class="project-thumb" style="--c1:#155E75;--c2:#22C55E">
+              <i class="fa-solid fa-child-reaching" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">Final Year Project</span>
+              <h3>Child Monitoring System</h3>
+              <p>Paired Parent and Child Android apps for tracking a child's location, messages, call logs, contacts and daily usage time.</p>
+              <ul class="tags"><li>Java</li><li>Android</li><li>Firebase Realtime DB</li><li>Firestore</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> University project</span></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EDUCATION & CERTIFICATIONS
+         ============================================================ -->
+    <section id="education">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">// education</span>
+          <h2 class="section-title">Education</h2>
+        </div>
+        <article class="edu-card reveal">
+          <div class="edu-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div>
+            <h3>BS (Hons.) Information Technology</h3>
+            <p class="edu-meta"><span>Bahauddin Zakariya University, Multan (Sahiwal Campus)</span><span class="tl-date">2015 – 2019</span></p>
+            <ul class="tl-list">
+              <li><strong>CGPA:</strong> 3.69 / 4.0</li>
+              <li><strong>Final Year Project:</strong> Child Monitoring System — native Android Parent and Child apps built with Firebase Realtime Database and Firestore.</li>
+            </ul>
+          </div>
+        </article>
+        <!-- CERTIFICATIONS: copy the edu-card block above for each certificate you want to add. -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT
+         ============================================================ -->
+    <section id="contact">
+      <div class="container contact-wrap">
+        <div class="reveal">
+          <span class="eyebrow">// contact</span>
+          <h2 class="section-title">Let's build something great</h2>
+          <p class="section-sub">I'm open to senior and lead Flutter roles — remote, hybrid or onsite. The fastest way to reach me is email or WhatsApp.</p>
+        </div>
+        <div class="contact-grid reveal">
+          <a class="contact-card" href="mailto:hammadd4726@gmail.com">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <div><small>Email</small><span>hammadd4726@gmail.com</span></div>
+          </a>
+          <a class="contact-card" href="https://wa.me/923004636921" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            <div><small>WhatsApp / Phone</small><span>+92 300 4636921</span></div>
+          </a>
+          <a class="contact-card" href="https://www.linkedin.com/in/hammad-alee" target="_blank" rel="noopener">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+            <div><small>LinkedIn</small><span>in/hammad-alee</span></div>
+          </a>
+          <a class="contact-card" href="https://github.com/hammad-alee" target="_blank" rel="noopener">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+            <div><small>GitHub</small><span>hammad-alee</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="container footer-inner">
+      <p style="margin:0">© <span id="year">2026</span> Hammad Ali. All rights reserved.</p>
+      <div>
+        <a href="https://www.linkedin.com/in/hammad-alee" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/hammad-alee" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:hammadd4726@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#home" class="icon-btn to-top" id="to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+
+  <!-- ============================================================
+       SCRIPTS (theme toggle, mobile menu, animations, filters)
+       ============================================================ -->
+  <script>
+    document.body.classList.remove('no-js');
+    var root = document.documentElement;
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ---- Theme toggle (remembers choice in this browser) ----
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    // ---- Mobile hamburger menu ----
+    var menuBtn = document.getElementById('menu-toggle');
+    var navLinks = document.getElementById('nav-links');
+    function setMenu(open) {
+      navLinks.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menuBtn.querySelector('i').className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    }
+    menuBtn.addEventListener('click', function () { setMenu(!navLinks.classList.contains('open')); });
+    navLinks.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+
+    // ---- Navbar border + back-to-top button on scroll ----
+    var navbar = document.getElementById('navbar');
+    var toTop = document.getElementById('to-top');
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY;
+      navbar.classList.toggle('scrolled', y > 10);
+      toTop.classList.toggle('show', y > 600);
+    }, { passive: true });
+
+    // ---- Fade-in on scroll ----
+    if ('IntersectionObserver' in window) {
+      var revealer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); revealer.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(function (el) { revealer.observe(el); });
+
+      // ---- Highlight the current section in the navbar ----
+      var links = {};
+      navLinks.querySelectorAll('a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var link = links[entry.target.id];
+          if (link && entry.isIntersecting) {
+            Object.keys(links).forEach(function (k) { links[k].classList.remove('active'); });
+            link.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      document.querySelectorAll('main section[id]').forEach(function (s) { spy.observe(s); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    // ---- Project filters ----
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.project-card');
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var f = btn.getAttribute('data-filter');
+        filterBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+        cards.forEach(function (card) {
+          var show = f === 'all' || card.getAttribute('data-category') === f;
+          card.hidden = !show;
+          if (show) card.classList.add('visible');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
