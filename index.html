@@ -109,6 +109,9 @@
     ul { margin: 0; padding: 0; }
     :focus-visible { outline: 2px solid var(--flutter-sky); outline-offset: 3px; border-radius: 6px; }
 
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+    .no-js .nav-actions, .no-js .filters { display: none; }
+    .hero-grid > *, .about-grid > *, .contact-card > div { min-width: 0; }
     .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }
     section { padding: 96px 0; }
     section:nth-of-type(even) { background: var(--bg-alt); }
@@ -136,7 +139,7 @@
       transition: transform .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease;
     }
     .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: linear-gradient(135deg, var(--flutter-blue), var(--flutter-sky)); color: #fff; }
+    .btn-primary { background: linear-gradient(135deg, #02569B, #0875AC); color: #fff; }
     .btn-primary:hover { color: #fff; }
     .btn-outline { border-color: var(--border); color: var(--text); background: var(--surface); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
@@ -305,16 +308,16 @@
     .project-card[hidden] { display: none; }
     /* "Screenshot" area: shows an image if you add one, otherwise a branded gradient with an icon */
     .project-thumb {
-      aspect-ratio: 16 / 9; display: grid; place-items: center; position: relative;
+      min-height: 120px; padding: 18px 12px 48px; display: grid; place-items: center; position: relative;
       background: linear-gradient(135deg, var(--c1, #02569B), var(--c2, #13B9FD));
     }
     .project-thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .project-thumb > i { font-size: 2.8rem; color: rgba(255,255,255,.92); }
+    .project-thumb > i { font-size: 2rem; color: rgba(255,255,255,.92); }
     .project-thumb .platforms {
-      position: absolute; left: 12px; bottom: 12px; display: flex; gap: 6px;
+      position: absolute; left: 12px; bottom: 12px; right: 12px; display: flex; flex-wrap: wrap; gap: 6px;
     }
     .project-thumb .platforms span {
-      font-size: .72rem; font-weight: 600; padding: 3px 9px; border-radius: 6px; background: rgba(0,0,0,.4); color: #fff;
+      font-size: .72rem; font-weight: 600; padding: 3px 9px; border-radius: 6px; background: rgba(0,0,0,.72); color: #fff;
     }
     .project-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
     .project-company { font-size: .78rem; font-family: 'JetBrains Mono', monospace; color: var(--accent); margin-bottom: 6px; }
@@ -329,6 +332,38 @@
     }
     .project-links a:hover { border-color: var(--accent); color: var(--accent); }
     .project-links .private { font-size: .82rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 7px; }
+    /* Screenshots: add data-shots="path1, path2, ..." to a .project-card */
+    .project-thumb .shot-strip { display: flex; justify-content: center; gap: 10px; }
+    .project-thumb .shot-strip img {
+      width: auto; height: 150px; max-width: 30%; object-fit: cover; border-radius: 10px;
+      border: 2px solid rgba(255,255,255,.85); box-shadow: 0 6px 18px rgba(0,0,0,.35); cursor: zoom-in;
+    }
+    .project-thumb .shot-strip.wide img { max-width: 100%; height: auto; max-height: 190px; }
+    .project-thumb .shot-strip.wide img + img { display: none; }
+    .project-links .shots-btn {
+      display: inline-flex; align-items: center; gap: 7px; font: inherit; font-size: .85rem; font-weight: 600; cursor: pointer;
+      padding: 7px 12px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    }
+    .project-links .shots-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .lightbox {
+      border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100dvh; width: 100vw; height: 100dvh;
+    }
+    .lightbox::backdrop { background: rgba(4, 10, 20, .9); }
+    .lightbox-inner { position: relative; height: 100%; display: grid; place-items: center; padding: 56px 64px; }
+    .lightbox img { max-width: 100%; max-height: calc(100dvh - 130px); border-radius: 12px; object-fit: contain; }
+    .lightbox-caption { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; color: #E7EEF7; font-size: .9rem; }
+    .lightbox button {
+      position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3);
+      background: rgba(0,0,0,.5); color: #fff; font-size: 1.1rem; cursor: pointer;
+    }
+    .lightbox button:hover { background: rgba(255,255,255,.15); }
+    .lightbox .lb-close { top: 12px; right: 12px; }
+    .lightbox .lb-prev { left: 12px; top: 50%; transform: translateY(-50%); }
+    .lightbox .lb-next { right: 12px; top: 50%; transform: translateY(-50%); }
+    @media (max-width: 560px) {
+      .lightbox-inner { padding: 60px 16px 56px; }
+      .lightbox .lb-prev, .lightbox .lb-next { top: auto; bottom: 8px; transform: none; }
+    }
 
     /* ============================================================
        EDUCATION
@@ -373,15 +408,16 @@
     .footer-inner a:hover { color: var(--accent); }
 
     .to-top {
-      position: fixed; right: 20px; bottom: 20px; z-index: 90; opacity: 0; pointer-events: none;
+      position: fixed; right: 20px; bottom: 20px; z-index: 90; opacity: 0; visibility: hidden; pointer-events: none;
       transition: opacity .3s ease; box-shadow: var(--shadow);
     }
-    .to-top.show { opacity: 1; pointer-events: auto; }
+    .to-top.show { opacity: 1; visibility: visible; pointer-events: auto; }
 
     /* ============================================================
        FADE-IN ANIMATION (on scroll)
        ============================================================ */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    /* Content stays visible if scripts or animation initialization fail. */
+    .reveal { opacity: 1; }
     .reveal.visible { opacity: 1; transform: none; }
     .no-js .reveal { opacity: 1; transform: none; }
 
@@ -407,6 +443,10 @@
         padding: 12px 16px 20px; background: var(--bg); border-bottom: 1px solid var(--border);
         transform: translateY(-120%); visibility: hidden; transition: transform .3s ease, visibility .3s;
       }
+      .nav-links { max-height: calc(100dvh - 68px); overflow-y: auto; }
+      .no-js .navbar { position: static; }
+      .no-js .nav-inner { height: auto; padding-top: 16px; flex-wrap: wrap; }
+      .no-js .nav-links { position: static; width: 100%; max-height: none; transform: none; visibility: visible; }
       .nav-links.open { transform: none; visibility: visible; }
       .nav-links a { display: block; padding: 12px 14px; font-size: 1rem; }
     }
@@ -439,10 +479,10 @@
       </a>
 
       <ul class="nav-links" id="nav-links">
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -477,7 +517,6 @@
           </p>
           <div class="hero-ctas">
             <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> View Projects</a>
-            <!-- Resume: upload your PDF to the repository with this exact file name -->
             <a href="Hammad_Ali_Flutter-Developer-Resume.pdf" class="btn btn-outline" download><i class="fa-solid fa-download" aria-hidden="true"></i> Download Resume</a>
             <a href="#contact" class="btn btn-outline"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Contact Me</a>
           </div>
@@ -505,6 +544,234 @@
             <div class="stat"><strong>4</strong><span>Platforms shipped</span></div>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROJECTS
+         To add a screenshot: inside .project-thumb, replace the <i> icon with
+           <img src="screenshots/app.png" alt="Screenshot of App Name home screen" loading="lazy" />
+         data-category controls the filter buttons: fintech, pos, health, other
+         ============================================================ -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">// projects</span>
+          <h2 class="section-title">Selected work</h2>
+          <p class="section-sub">Production apps I've built or led. Most are client-owned, so links go to the live store listings where they're public.</p>
+        </div>
+
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+          <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" type="button" data-filter="fintech" aria-pressed="false">Fintech &amp; Web3</button>
+          <button class="filter-btn" type="button" data-filter="pos" aria-pressed="false">POS &amp; Business</button>
+          <button class="filter-btn" type="button" data-filter="health" aria-pressed="false">Healthcare</button>
+          <button class="filter-btn" type="button" data-filter="other" aria-pressed="false">Other</button>
+        </div>
+
+        <p id="project-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="projects-grid">
+
+          <!-- Prior Cash POS
+               Screenshots: list image paths in data-shots (comma-separated). Portrait images show
+               up to 3 on the card; landscape shows the first one. All open in the gallery. -->
+          <article class="project-card reveal" data-category="pos"
+                   data-shots="images/prior-cash/01.webp, images/prior-cash/02.webp, images/prior-cash/03.webp, images/prior-cash/04.webp, images/prior-cash/05.webp, images/prior-cash/06.webp, images/prior-cash/07.webp, images/prior-cash/08.webp, images/prior-cash/09.webp, images/prior-cash/10.webp">
+            <div class="project-thumb" style="--c1:#02569B;--c2:#00A3A3">
+              <i class="fa-solid fa-cash-register" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span><span>macOS</span><span>Windows</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">GoOrderz</span>
+              <h3>Prior Cash POS</h3>
+              <p>One Flutter codebase for Android, iOS, macOS and Windows, bringing point-of-sale workflows to phones, tablets and desktop tills.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Flutter Desktop</li><li>POS Integration</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- MyB -->
+          <article class="project-card reveal" data-category="fintech">
+            <div class="project-thumb" style="--c1:#3B1E8C;--c2:#13B9FD">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">Genesis IT Lab</span>
+              <h3>MyB</h3>
+              <p>A Flutter rewards app for Android and iOS, combining Web3 features, mobile coupons, badges and spending-habit quizzes.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Blockchain</li><li>REST APIs</li></ul>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=im.myb.android" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
+                <a href="https://apps.apple.com/kr/app/id6476365625" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 13Cure -->
+          <article class="project-card reveal" data-category="health">
+            <div class="project-thumb" style="--c1:#0B6E4F;--c2:#13B9FD">
+              <i class="fa-solid fa-house-medical" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">IT Virtual House</span>
+              <h3>13Cure – Doctor Home Visit</h3>
+              <p>Rebuilt a live doctor home-visit booking app in Flutter for Android and iOS, integrating healthcare workflows with REST APIs.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Healthcare</li><li>REST APIs</li></ul>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=com.curehome.doctorservice" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
+                <a href="https://apps.apple.com/us/app/cure-home-doctor-service/id1110123056" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Prime Medic Consult -->
+          <article class="project-card reveal" data-category="health">
+            <div class="project-thumb" style="--c1:#02569B;--c2:#5FD3A1">
+              <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">IT Virtual House</span>
+              <h3>Prime Medic – Consult a Doctor</h3>
+              <p>Renewed a live online-clinic app in Flutter for Android and iOS, connecting remote doctor consultations through REST APIs.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Telehealth</li><li>REST APIs</li></ul>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=au.com.primemedic" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
+                <a href="https://apps.apple.com/us/app/prime-medic-online-clinic/id1503906417" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Cashero -->
+          <article class="project-card reveal" data-category="fintech">
+            <div class="project-thumb" style="--c1:#0E7C66;--c2:#13B9FD">
+              <i class="fa-solid fa-money-bill-transfer" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">Genesis IT Lab</span>
+              <h3>Cashero</h3>
+              <p>A Flutter fintech app for Android and iOS, integrating REST APIs for sending and receiving money worldwide.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Fintech</li><li>REST APIs</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- Arts Market Gallery -->
+          <article class="project-card reveal" data-category="other">
+            <div class="project-thumb" style="--c1:#8C2F6B;--c2:#F2994A">
+              <i class="fa-solid fa-palette" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">IT Virtual House</span>
+              <h3>Arts Market Gallery</h3>
+              <p>A marketplace app for browsing and buying artwork, built in Flutter for both stores.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>E-commerce</li><li>REST APIs</li></ul>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=com.prime.artgallery" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
+                <a href="https://apps.apple.com/in/app/arts-market-gallery/id1612064138" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- SuperBooking -->
+          <article class="project-card reveal" data-category="pos">
+            <div class="project-thumb" style="--c1:#1E3A8A;--c2:#7C5CFF">
+              <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">Genesis IT Lab</span>
+              <h3>SuperBooking (Consumer &amp; Business)</h3>
+              <p>Two connected apps: one for customers to book services, one for businesses to manage their services and bookings.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Booking</li><li>REST APIs</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- TZ-Assembly -->
+          <article class="project-card reveal" data-category="pos"
+                   data-shots="images/tz-assembly/01.webp, images/tz-assembly/02.webp, images/tz-assembly/03.webp, images/tz-assembly/04.webp, images/tz-assembly/05.webp, images/tz-assembly/06.webp, images/tz-assembly/07.webp">
+            <div class="project-thumb" style="--c1:#374151;--c2:#02569B">
+              <i class="fa-solid fa-warehouse" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">GoOrderz</span>
+              <h3>TZ-Assembly Suite</h3>
+              <p>Three operations apps — Warehouse, Worker and Quality Control — that cover an assembly workflow end to end.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>REST APIs</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Internal apps — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- Legrand -->
+          <article class="project-card reveal" data-category="other">
+            <div class="project-thumb" style="--c1:#7A1F1F;--c2:#E85D3A">
+              <i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">GoOrderz</span>
+              <h3>Legrand App</h3>
+              <p>A Flutter Android app integrating MQTT for real-time communication with connected devices.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>MQTT</li><li>IoT</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- Prime Medic Booking (Xamarin) -->
+          <article class="project-card reveal" data-category="health">
+            <div class="project-thumb" style="--c1:#4B2991;--c2:#02569B">
+              <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">IT Virtual House</span>
+              <h3>Prime Medic – Find &amp; Book a Doctor</h3>
+              <p>A patient appointment booking app built natively with Xamarin.Android and Xamarin.iOS.</p>
+              <ul class="tags"><li>Xamarin</li><li>C#</li><li>REST APIs</li></ul>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=pk.com.primemedic" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
+                <span class="private"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store listing unavailable</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Jomor -->
+          <article class="project-card reveal" data-category="fintech">
+            <div class="project-thumb" style="--c1:#B45309;--c2:#F59E0B">
+              <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span><span>iOS</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">Genesis IT Lab</span>
+              <h3>Jomor</h3>
+              <p>A ticket-buying app that supports both crypto and fiat wallets.</p>
+              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Crypto Wallets</li><li>Payments</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
+            </div>
+          </article>
+
+          <!-- Child Monitoring (FYP) -->
+          <article class="project-card reveal" data-category="other">
+            <div class="project-thumb" style="--c1:#155E75;--c2:#22C55E">
+              <i class="fa-solid fa-child-reaching" aria-hidden="true"></i>
+              <div class="platforms"><span>Android</span></div>
+            </div>
+            <div class="project-body">
+              <span class="project-company">Final Year Project</span>
+              <h3>Child Monitoring System</h3>
+              <p>Paired Parent and Child Android apps for tracking a child's location, messages, call logs, contacts and daily usage time.</p>
+              <ul class="tags"><li>Java</li><li>Android</li><li>Firebase Realtime DB</li><li>Firestore</li></ul>
+              <div class="project-links"><span class="private"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> University project</span></div>
+            </div>
+          </article>
+
+        </div>
       </div>
     </section>
 
@@ -615,7 +882,7 @@
                 <h3 class="tl-role">Lead Flutter Developer</h3>
                 <span class="tl-date">Oct 2024 – Present</span>
               </div>
-              <p class="tl-company"><a href="https://www.goorderz.hu" target="_blank" rel="noopener">GoOrderz kft.</a><span>Hungary · Full-time</span></p>
+              <p class="tl-company"><a href="https://goorderz.hu" target="_blank" rel="noopener">GoOrderz kft.</a><span>Hungary · Full-time</span></p>
               <ul class="tl-list">
                 <li>Lead the Flutter development lifecycle for POS and food-delivery apps across <strong>Android, iOS, macOS and Windows</strong>.</li>
                 <li>Oversee POS integrations and AI-driven features inside the mobile apps.</li>
@@ -683,229 +950,6 @@
             </article>
           </li>
         </ol>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         PROJECTS
-         To add a screenshot: inside .project-thumb, replace the <i> icon with
-           <img src="screenshots/app.png" alt="Screenshot of App Name home screen" loading="lazy" />
-         data-category controls the filter buttons: fintech, pos, health, other
-         ============================================================ -->
-    <section id="projects">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">// projects</span>
-          <h2 class="section-title">Selected work</h2>
-          <p class="section-sub">Production apps I've built or led. Most are client-owned, so links go to the live store listings where they're public.</p>
-        </div>
-
-        <div class="filters reveal" role="group" aria-label="Filter projects">
-          <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All</button>
-          <button class="filter-btn" type="button" data-filter="fintech" aria-pressed="false">Fintech &amp; Web3</button>
-          <button class="filter-btn" type="button" data-filter="pos" aria-pressed="false">POS &amp; Business</button>
-          <button class="filter-btn" type="button" data-filter="health" aria-pressed="false">Healthcare</button>
-          <button class="filter-btn" type="button" data-filter="other" aria-pressed="false">Other</button>
-        </div>
-
-        <div class="projects-grid">
-
-          <!-- MyB -->
-          <article class="project-card reveal" data-category="fintech">
-            <div class="project-thumb" style="--c1:#3B1E8C;--c2:#13B9FD">
-              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span><span>iOS</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">Genesis IT Lab</span>
-              <h3>MyB</h3>
-              <p>A privacy-first Web 3.0 rewards app. Users earn rewards exchangeable for mobile coupons, collect badges, and earn bonuses through a spending-habit quiz.</p>
-              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Blockchain</li><li>REST APIs</li></ul>
-              <div class="project-links">
-                <a href="https://play.google.com/store/apps/details?id=im.myb.android" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
-                <a href="https://apps.apple.com/kr/app/id6476365625" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Prior Cash POS -->
-          <article class="project-card reveal" data-category="pos">
-            <div class="project-thumb" style="--c1:#02569B;--c2:#00A3A3">
-              <i class="fa-solid fa-cash-register" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span><span>iOS</span><span>macOS</span><span>Windows</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">GoOrderz</span>
-              <h3>Prior Cash POS</h3>
-              <p>A point-of-sale system built from a single Flutter codebase that runs on phones, tablets and desktop tills.</p>
-              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Flutter Desktop</li><li>POS Integration</li></ul>
-              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
-            </div>
-          </article>
-
-          <!-- 13Cure -->
-          <article class="project-card reveal" data-category="health">
-            <div class="project-thumb" style="--c1:#0B6E4F;--c2:#13B9FD">
-              <i class="fa-solid fa-house-medical" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span><span>iOS</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">IT Virtual House</span>
-              <h3>13Cure – Doctor Home Visit</h3>
-              <p>Full Flutter rebuild of a live app that lets patients book a doctor to visit their home.</p>
-              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Healthcare</li><li>REST APIs</li></ul>
-              <div class="project-links">
-                <a href="https://play.google.com/store/apps/details?id=com.curehome.doctorservice" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
-                <a href="https://apps.apple.com/us/app/cure-home-doctor-service/id1110123056" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Prime Medic Consult -->
-          <article class="project-card reveal" data-category="health">
-            <div class="project-thumb" style="--c1:#02569B;--c2:#5FD3A1">
-              <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span><span>iOS</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">IT Virtual House</span>
-              <h3>Prime Medic – Consult a Doctor</h3>
-              <p>Flutter renewal of a live online-clinic app that lets patients consult a doctor remotely.</p>
-              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Telehealth</li><li>REST APIs</li></ul>
-              <div class="project-links">
-                <a href="https://play.google.com/store/apps/details?id=au.com.primemedic" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
-                <a href="https://apps.apple.com/us/app/prime-medic-online-clinic/id1503906417" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Cashero -->
-          <article class="project-card reveal" data-category="fintech">
-            <div class="project-thumb" style="--c1:#0E7C66;--c2:#13B9FD">
-              <i class="fa-solid fa-money-bill-transfer" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span><span>iOS</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">Genesis IT Lab</span>
-              <h3>Cashero</h3>
-              <p>A fintech app for sending and receiving money worldwide.</p>
-              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Fintech</li><li>REST APIs</li></ul>
-              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
-            </div>
-          </article>
-
-          <!-- Arts Market Gallery -->
-          <article class="project-card reveal" data-category="other">
-            <div class="project-thumb" style="--c1:#8C2F6B;--c2:#F2994A">
-              <i class="fa-solid fa-palette" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span><span>iOS</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">IT Virtual House</span>
-              <h3>Arts Market Gallery</h3>
-              <p>A marketplace app for browsing and buying artwork, built in Flutter for both stores.</p>
-              <ul class="tags"><li>Flutter</li><li>Dart</li><li>E-commerce</li><li>REST APIs</li></ul>
-              <div class="project-links">
-                <a href="https://play.google.com/store/apps/details?id=com.prime.artgallery" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
-                <a href="https://apps.apple.com/in/app/arts-market-gallery/id1612064138" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- SuperBooking -->
-          <article class="project-card reveal" data-category="pos">
-            <div class="project-thumb" style="--c1:#1E3A8A;--c2:#7C5CFF">
-              <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span><span>iOS</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">Genesis IT Lab</span>
-              <h3>SuperBooking (Consumer &amp; Business)</h3>
-              <p>Two connected apps: one for customers to book services, one for businesses to manage their services and bookings.</p>
-              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Booking</li><li>REST APIs</li></ul>
-              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
-            </div>
-          </article>
-
-          <!-- TZ-Assembly -->
-          <article class="project-card reveal" data-category="pos">
-            <div class="project-thumb" style="--c1:#374151;--c2:#02569B">
-              <i class="fa-solid fa-warehouse" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span><span>iOS</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">GoOrderz</span>
-              <h3>TZ-Assembly Suite</h3>
-              <p>Three operations apps — Warehouse, Worker and Quality Control — that cover an assembly workflow end to end.</p>
-              <ul class="tags"><li>Flutter</li><li>Dart</li><li>REST APIs</li></ul>
-              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Internal apps — demo on request</span></div>
-            </div>
-          </article>
-
-          <!-- Legrand -->
-          <article class="project-card reveal" data-category="other">
-            <div class="project-thumb" style="--c1:#7A1F1F;--c2:#E85D3A">
-              <i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">GoOrderz</span>
-              <h3>Legrand App</h3>
-              <p>An Android app that communicates with devices in real time over MQTT.</p>
-              <ul class="tags"><li>Flutter</li><li>Dart</li><li>MQTT</li><li>IoT</li></ul>
-              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
-            </div>
-          </article>
-
-          <!-- Prime Medic Booking (Xamarin) -->
-          <article class="project-card reveal" data-category="health">
-            <div class="project-thumb" style="--c1:#4B2991;--c2:#02569B">
-              <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span><span>iOS</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">IT Virtual House</span>
-              <h3>Prime Medic – Find &amp; Book a Doctor</h3>
-              <p>A patient appointment booking app built natively with Xamarin.Android and Xamarin.iOS.</p>
-              <ul class="tags"><li>Xamarin</li><li>C#</li><li>REST APIs</li></ul>
-              <div class="project-links">
-                <a href="https://play.google.com/store/apps/details?id=pk.com.primemedic" target="_blank" rel="noopener"><i class="fa-brands fa-google-play" aria-hidden="true"></i> Play Store</a>
-                <a href="https://apps.apple.com/pk/app/prime-medic-find-book-doc/id1546715882" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios" aria-hidden="true"></i> App Store</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Jomor -->
-          <article class="project-card reveal" data-category="fintech">
-            <div class="project-thumb" style="--c1:#B45309;--c2:#F59E0B">
-              <i class="fa-solid fa-ticket" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span><span>iOS</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">Genesis IT Lab</span>
-              <h3>Jomor</h3>
-              <p>A ticket-buying app that supports both crypto and fiat wallets.</p>
-              <ul class="tags"><li>Flutter</li><li>Dart</li><li>Crypto Wallets</li><li>Payments</li></ul>
-              <div class="project-links"><span class="private"><i class="fa-solid fa-lock" aria-hidden="true"></i> Client project — demo on request</span></div>
-            </div>
-          </article>
-
-          <!-- Child Monitoring (FYP) -->
-          <article class="project-card reveal" data-category="other">
-            <div class="project-thumb" style="--c1:#155E75;--c2:#22C55E">
-              <i class="fa-solid fa-child-reaching" aria-hidden="true"></i>
-              <div class="platforms"><span>Android</span></div>
-            </div>
-            <div class="project-body">
-              <span class="project-company">Final Year Project</span>
-              <h3>Child Monitoring System</h3>
-              <p>Paired Parent and Child Android apps for tracking a child's location, messages, call logs, contacts and daily usage time.</p>
-              <ul class="tags"><li>Java</li><li>Android</li><li>Firebase Realtime DB</li><li>Firestore</li></ul>
-              <div class="project-links"><span class="private"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> University project</span></div>
-            </div>
-          </article>
-
-        </div>
       </div>
     </section>
 
@@ -979,26 +1023,37 @@
     </div>
   </footer>
 
-  <a href="#home" class="icon-btn to-top" id="to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+  <a href="#home" class="icon-btn to-top" id="to-top" aria-label="Back to top" tabindex="-1" aria-hidden="true"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
 
   <!-- ============================================================
        SCRIPTS (theme toggle, mobile menu, animations, filters)
        ============================================================ -->
-  <script>
-    document.body.classList.remove('no-js');
-    var root = document.documentElement;
+  <dialog class="lightbox" id="lightbox" aria-label="Project screenshots">
+    <div class="lightbox-inner">
+      <img id="lb-img" alt="">
+      <p class="lightbox-caption" id="lb-caption" aria-live="polite"></p>
+      <button class="lb-close" type="button" aria-label="Close screenshots"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <button class="lb-prev" type="button" aria-label="Previous screenshot"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+      <button class="lb-next" type="button" aria-label="Next screenshot"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+    </div>
+  </dialog>
 
-    // Footer year
+  <script>
+    var root = document.documentElement;
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ---- Theme toggle (remembers choice in this browser) ----
-    document.getElementById('theme-toggle').addEventListener('click', function () {
+    var themeBtn = document.getElementById('theme-toggle');
+    function updateThemeLabel() {
+      themeBtn.setAttribute('aria-label', root.getAttribute('data-theme') === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+    }
+    themeBtn.addEventListener('click', function () {
       var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       root.setAttribute('data-theme', next);
+      updateThemeLabel();
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
+    updateThemeLabel();
 
-    // ---- Mobile hamburger menu ----
     var menuBtn = document.getElementById('menu-toggle');
     var navLinks = document.getElementById('nav-links');
     function setMenu(open) {
@@ -1008,58 +1063,154 @@
       menuBtn.querySelector('i').className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
     }
     menuBtn.addEventListener('click', function () { setMenu(!navLinks.classList.contains('open')); });
-    navLinks.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+    navLinks.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        setMenu(false);
+        var section = document.querySelector(a.getAttribute('href'));
+        section.setAttribute('tabindex', '-1');
+        section.focus({ preventScroll: true });
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        setMenu(false);
+        menuBtn.focus();
+      }
+    });
+    var desktop = window.matchMedia('(min-width: 901px)');
+    desktop.addEventListener('change', function () { setMenu(false); });
 
-    // ---- Navbar border + back-to-top button on scroll ----
     var navbar = document.getElementById('navbar');
     var toTop = document.getElementById('to-top');
-    window.addEventListener('scroll', function () {
+    var sections = Array.from(document.querySelectorAll('main section[id]'));
+    var links = Array.from(navLinks.querySelectorAll('a'));
+    function updateScrollState() {
       var y = window.scrollY;
       navbar.classList.toggle('scrolled', y > 10);
       toTop.classList.toggle('show', y > 600);
-    }, { passive: true });
-
-    // ---- Fade-in on scroll ----
-    if ('IntersectionObserver' in window) {
-      var revealer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) { entry.target.classList.add('visible'); revealer.unobserve(entry.target); }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('.reveal').forEach(function (el) { revealer.observe(el); });
-
-      // ---- Highlight the current section in the navbar ----
-      var links = {};
-      navLinks.querySelectorAll('a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
-      var spy = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          var link = links[entry.target.id];
-          if (link && entry.isIntersecting) {
-            Object.keys(links).forEach(function (k) { links[k].classList.remove('active'); });
-            link.classList.add('active');
-          }
-        });
-      }, { rootMargin: '-45% 0px -50% 0px' });
-      document.querySelectorAll('main section[id]').forEach(function (s) { spy.observe(s); });
-    } else {
-      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+      toTop.setAttribute('tabindex', y > 600 ? '0' : '-1');
+      toTop.setAttribute('aria-hidden', String(y <= 600));
+      var current = sections[0].id;
+      sections.forEach(function (section) {
+        if (section.getBoundingClientRect().top <= navbar.offsetHeight + 100) current = section.id;
+      });
+      if (y > 0 && Math.ceil(y + window.innerHeight) >= document.documentElement.scrollHeight) current = 'contact';
+      links.forEach(function (link) {
+        var active = link.getAttribute('href') === '#' + current;
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
     }
+    var scrollPending = false;
+    function scheduleScrollUpdate() {
+      if (scrollPending) return;
+      scrollPending = true;
+      requestAnimationFrame(function () { scrollPending = false; updateScrollState(); });
+    }
+    window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
+    window.addEventListener('resize', scheduleScrollUpdate);
+    window.addEventListener('pageshow', updateScrollState);
+    toTop.addEventListener('click', function () {
+      var home = document.getElementById('home');
+      home.setAttribute('tabindex', '-1');
+      home.focus({ preventScroll: true });
+    });
 
-    // ---- Project filters ----
     var filterBtns = document.querySelectorAll('.filter-btn');
     var cards = document.querySelectorAll('.project-card');
+    var projectStatus = document.getElementById('project-status');
     filterBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var f = btn.getAttribute('data-filter');
+        var count = 0;
         filterBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
         cards.forEach(function (card) {
           var show = f === 'all' || card.getAttribute('data-category') === f;
           card.hidden = !show;
-          if (show) card.classList.add('visible');
+          if (show) count++;
         });
+        projectStatus.textContent = count + (count === 1 ? ' project' : ' projects') + ' shown: ' + btn.textContent + '.';
+        scheduleScrollUpdate();
       });
     });
+    document.body.classList.remove('no-js');
+    updateScrollState();
+
+    // Screenshot gallery for cards with data-shots="a.png, b.png"
+    var lightbox = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lb-img');
+    var lbCaption = document.getElementById('lb-caption');
+    var lbShots = [], lbIndex = 0, lbTitle = '';
+    function showShot(i) {
+      lbIndex = (i + lbShots.length) % lbShots.length;
+      lbImg.src = lbShots[lbIndex];
+      lbImg.alt = lbTitle + ' screenshot ' + (lbIndex + 1);
+      lbCaption.textContent = lbTitle + ' — ' + (lbIndex + 1) + ' / ' + lbShots.length;
+      lightbox.querySelector('.lb-prev').hidden = lightbox.querySelector('.lb-next').hidden = lbShots.length < 2;
+    }
+    function openShots(shots, title, i) {
+      lbShots = shots; lbTitle = title;
+      showShot(i || 0);
+      lightbox.showModal();
+    }
+    lightbox.querySelector('.lb-close').addEventListener('click', function () { lightbox.close(); });
+    lightbox.querySelector('.lb-prev').addEventListener('click', function () { showShot(lbIndex - 1); });
+    lightbox.querySelector('.lb-next').addEventListener('click', function () { showShot(lbIndex + 1); });
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox || e.target.classList.contains('lightbox-inner')) lightbox.close(); });
+    lightbox.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') showShot(lbIndex - 1);
+      if (e.key === 'ArrowRight') showShot(lbIndex + 1);
+    });
+    cards.forEach(function (card) {
+      var attr = card.getAttribute('data-shots');
+      if (!attr) return;
+      var shots = attr.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+      if (!shots.length) return;
+      var title = card.querySelector('h3').textContent;
+
+      var thumb = card.querySelector('.project-thumb');
+      var icon = thumb.querySelector(':scope > i');
+      var strip = document.createElement('div');
+      strip.className = 'shot-strip';
+      shots.slice(0, 3).forEach(function (src, i) {
+        var img = document.createElement('img');
+        img.src = src; img.alt = ''; img.loading = 'lazy';
+        img.addEventListener('click', function () { openShots(shots, title, i); });
+        if (i === 0) img.addEventListener('load', function () {
+          strip.classList.toggle('wide', img.naturalWidth > img.naturalHeight);
+        });
+        strip.appendChild(img);
+      });
+      if (icon) icon.replaceWith(strip); else thumb.prepend(strip);
+
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'shots-btn';
+      btn.innerHTML = '<i class="fa-solid fa-images" aria-hidden="true"></i> Screenshots (' + shots.length + ')';
+      btn.addEventListener('click', function () { openShots(shots, title, 0); });
+      var links = card.querySelector('.project-links');
+      var privateNote = links.querySelector('.private .fa-lock');
+      if (privateNote) privateNote.parentNode.replaceWith(btn); else links.appendChild(btn);
+    });
+
+    // Optional animation never controls whether content is readable.
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if ('IntersectionObserver' in window && 'animate' in Element.prototype) {
+      var revealer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          revealer.unobserve(entry.target);
+          if (!reducedMotion.matches) entry.target.animate([
+            { opacity: 0, transform: 'translateY(16px)' },
+            { opacity: 1, transform: 'none' }
+          ], { duration: 450, easing: 'ease-out' });
+        });
+      }, { threshold: 0.05 });
+      document.querySelectorAll('.reveal').forEach(function (el) { revealer.observe(el); });
+      reducedMotion.addEventListener('change', function () {
+        if (reducedMotion.matches) document.getAnimations().forEach(function (animation) { animation.cancel(); });
+      });
+    }
   </script>
 </body>
 </html>
